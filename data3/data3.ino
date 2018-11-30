@@ -27,12 +27,11 @@ int e_hour;
 int e_minute;
 char ss_temp[4];
 String sss_temp;
-int s_temp;
+int auto_temp;
 int modul[8][6];
 int want_temp;
-String s_time;
-int now_time;
 int value;
+int manual_value;
 
 void setup() {
   // Open serial communications and wait for port to open:
@@ -87,14 +86,17 @@ void loop() { // run over and over
   sscanf(Buffer,"DATE %s",date);
   sscanf(Buffer,"modul %d %d %d %d %d %s %d",&modulNumber,&s_hour,&s_minute,&e_hour,&e_minute,ss_temp,&value);
   sscanf(Buffer,"c %d", &want_temp);
+  sscanf(Buffer,"o %d", &manual_value);
   sss_temp=ss_temp;
   s_temp=sss_temp.toInt();
            modul[modulNumber][1]=s_hour;
            modul[modulNumber][2]=s_minute;
            modul[modulNumber][3]=e_hour;
            modul[modulNumber][4]=e_minute;
-           modul[modulNumber][5]=s_temp;
+           modul[modulNumber][5]=auto_temp;
            modul[modulNumber][6]=value;
+            Serial.print("manual_on/off : ");
+            Serial.println(manual_value);
             Serial.print("temp : ");
             Serial.println(temp);
             Serial.print("want_temp : ");
@@ -109,7 +111,7 @@ void loop() { // run over and over
             Serial.println(modul[modulNumber][3]);
             Serial.print("end_minute : ");
             Serial.println(modul[modulNumber][4]);
-            Serial.print("temp : ");
+            Serial.print("auto_temp : ");
             Serial.println(modul[modulNumber][5]);
             Serial.print("type : ");
             Serial.println(modul[modulNumber][6]);
