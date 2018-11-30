@@ -88,7 +88,7 @@ void loop() { // run over and over
   sscanf(Buffer,"c %d", &want_temp);
   sscanf(Buffer,"o %d", &manual_value);
   sss_temp=ss_temp;
-  s_temp=sss_temp.toInt();
+  auto_temp=sss_temp.toInt();
            modul[modulNumber][1]=s_hour;
            modul[modulNumber][2]=s_minute;
            modul[modulNumber][3]=e_hour;
