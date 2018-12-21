@@ -241,4 +241,3 @@ void send_wanted_temp(int want_temp){
    }
   }
 }
-   
