@@ -71,17 +71,17 @@ void loop() { // run over and over
 
   int cnt = 0;
   //데이터 수신 여부 확인
-  if (Serial.available() < 1) {
+  if (mySerial.available() < 1) {
     return 0;
   }
   //timeout 동안 1줄 데이터 읽기
 
   unsigned long start = millis();
   while (millis() - start < 100) {
-    if (Serial.available() < 1) {
+    if (mySerial.available() < 1) {
       continue;
     }
-    char data = Serial.read();
+    char data = mySerial.read();
     if (data == '\n') {
       Buffer[cnt] = '\0';
       break;
@@ -89,8 +89,8 @@ void loop() { // run over and over
     Buffer[cnt++] = data;
   }
   //잔류 데이터 지우기
-  while (Serial.available() > 0) {
-    Serial.read();
+  while (mySerial.available() > 0) {
+    mySerial.read();
   }
   sscanf(Buffer,"DATE %s",date);
   sscanf(Buffer,"DATE %d, %d, %d, %d, %d, %d",&year,&month,&day,&hour,&minute,&second);
